@@ -1,0 +1,23 @@
+
+
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888/
+  application:
+    name: gateway-service
+  cloud:
+    config:
+      profile: ${profile:dev}
+    gateway:
+      routes:
+        - id: apimovie
+          uri: lb://MOVIE-SERVICE
+          predicates:
+            - Path=/movies/**
+        - id: apicatalog
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog/**
+
+
+
