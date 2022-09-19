@@ -1,0 +1,40 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888/
+  application:
+    name: gateway-service
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 406906485125-1plnfuuomv8cgedee080j4apfv4e4bot.apps.googleusercontent.com
+            client-secret: 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
+            scope: openid
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+
+  cloud:
+    config:
+      profile: ${profile:dev}
+    gateway:
+      default-filters:
+        - TokenRelay
+      routes:
+        - id: apicarros
+          uri: lb://CARROS-SERVICE
+          predicates:
+            - Path=/carro/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: carrosCircuitBreaker
+                fallbackUri: forward:/carro-fallback
+        - id: apicatalogo
+          uri: lb://CATALOGO-SERVICE
+          predicates:
+            - Path=/catalogo/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: catalogoCircuitBreaker
+                fallbackUri: forward:/catalogo-fallback

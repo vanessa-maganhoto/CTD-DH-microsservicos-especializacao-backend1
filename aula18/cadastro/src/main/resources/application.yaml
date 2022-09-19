@@ -1,0 +1,24 @@
+server:
+  port: 8002
+  servlet:
+    context-path: /cadastro/
+spring:
+  application:
+    name: cadastro-service
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    port: 5672
+
+queue:
+  pessoa:
+    name: PessoaQueue
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+mensagem: cadastro up

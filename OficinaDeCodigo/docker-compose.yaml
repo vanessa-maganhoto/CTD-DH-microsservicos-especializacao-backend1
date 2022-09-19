@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  zipkin:
+    image: openzipkin/zipkin:2
+    ports:
+      - 9411:9411
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+
+  eureka-service:
+    build: eureka
+    ports:
+      - "8761:8761"
+    depends_on:
+      - zipkin
+      - rabbitmq
+#    networks:
+#      - local-network
+
+  config-server:
+    build: config
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka-service
+#    networks:
+#      - local-network
+
+  carros-service:
+    build: carros
+    ports:
+      - "8085:8085"
+    depends_on:
+      - config-server
+#    networks:
+#      - local-network
+
+  catalogo-service:
+    build: catalogo
+    ports:
+      - "8086:8086"
+    depends_on:
+      - config-server
+#    networks:
+#      - local-network
+
+
+networks:
+  host:
+    name: host
+    external: true

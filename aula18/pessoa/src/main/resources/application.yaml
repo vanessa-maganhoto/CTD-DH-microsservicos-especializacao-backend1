@@ -1,0 +1,40 @@
+server:
+  port: 8001
+  servlet:
+    context-path: /pessoa/
+
+spring:
+  application:
+    name: pessoa-service
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: sa
+  jpa:
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
+
+queue:
+  pessoa:
+    name: PessoaQueue
+
+mensagem: pessoa up
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

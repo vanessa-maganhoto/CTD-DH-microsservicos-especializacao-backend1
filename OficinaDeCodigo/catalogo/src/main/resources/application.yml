@@ -1,0 +1,49 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888/
+  application:
+    name: catalogo-service
+  cloud:
+    config:
+      profile: ${profile:dev}
+
+#Configuração do actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: circuitbreakers, circuitbreakerevents, health, info
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+
+
+#configuração circuit breaker
+resilience4j:
+  circuitbreaker:
+    instances:
+      CARROS-SERVICE:
+        allowHealthIndicatorToFail: false
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        failueRateThreshold: 50
+        waitDurationInOpenState: 15000
+        permittedNumberOfCalssInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfIfOpenEnabled: true
+
+  #Configuração do mecanismo de novas tentativas
+  retry:
+    instances:
+      CARROS-SERVICE:
+        maxAttempts: 3
+        waitDuration: 1000
+        #retryExceptions[0]: feign.FeignExceptions$InternalServerError
+        retryExceptions:
+          - feign.FeignException$InternalServerError
+          - org.springframework.web.client.HttpServerErrorException
+          - java.util.concurrent.TimeoutException
+          - java.io.IOException

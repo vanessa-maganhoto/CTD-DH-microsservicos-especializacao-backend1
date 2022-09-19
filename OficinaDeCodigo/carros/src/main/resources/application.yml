@@ -1,0 +1,8 @@
+spring:
+  config:
+    import: http://localhost:8888/
+  application:
+    name: carros-service
+  cloud:
+    config:
+      profile: ${profile:dev}

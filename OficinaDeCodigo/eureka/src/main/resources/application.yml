@@ -1,0 +1,13 @@
+server:
+  port: 8760
+#  Mudei de 8761 para 8760 para testar
+spring:
+  application:
+    name: eureka-service
+    zipkin:
+      baseUrl: http://localhost:9411/
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+message: Mensagem
