@@ -1,0 +1,37 @@
+spring:
+  config:
+    import: optional:configserver:http://config:8888/
+  application:
+    name: gateway-service
+  cloud:
+    config:
+      profile: ${profile:dev}
+    gateway:
+      routes:
+        - id: apiserie
+          uri: lb://SERIE-SERVICE
+          predicates:
+            - Path=/serie/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: carrosCircuitBreaker
+                fallbackUri: forward:/serie-fallback
+        - id: apimovie
+          uri: lb://MOVIE-SERVICE
+          predicates:
+            - Path=/movie/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: carrosCircuitBreaker
+                fallbackUri: forward:/movie-fallback
+        - id: apicatalogo
+          uri: lb://CATALOGO-SERVICE
+          predicates:
+            - Path=/catalogo/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: catalogoCircuitBreaker
+                fallbackUri: forward:/catalogo-fallback
