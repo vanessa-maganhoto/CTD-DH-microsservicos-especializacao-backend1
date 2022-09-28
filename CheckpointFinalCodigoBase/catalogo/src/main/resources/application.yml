@@ -1,0 +1,17 @@
+spring:
+  config:
+    import: optional:configserver:http://config:8888/
+  application:
+    name: catalogo-service
+  cloud:
+    config:
+      profile: ${profile:dev}
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/catalogo
+    username: root
+    password: root
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
