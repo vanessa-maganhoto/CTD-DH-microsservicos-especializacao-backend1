@@ -1,0 +1,31 @@
+#server:
+#  port: 8087
+#  servlet:
+#    context-path: /serie/
+spring:
+  config:
+    import: configserver:http://localhost:8888/
+  application:
+    name: serie-service
+  cloud:
+    config:
+      profile: ${profile:dev}
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3303/series
+#    username: usuarioAplicacao
+#    password: 123456789Tu
+#  jpa:
+#    hibernate.ddl-auto: update
+#    generate-ddl: true
+#    show-sql: true
+
+#queue:
+#  serie:
+#    name: SerieQueue
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/

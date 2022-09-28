@@ -15,4 +15,8 @@ public class RabbitMQSenderConfig {
     public Queue queue() {
         return new Queue(this.movieQueue, false);
     }
+
+    public String getMovieQueue() {
+        return movieQueue;
+    }
 }

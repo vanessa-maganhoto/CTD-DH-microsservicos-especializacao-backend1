@@ -1,0 +1,8 @@
+spring:
+  config:
+    import: configserver:http://config:8888/
+  application:
+    name: serie-service
+  cloud:
+    config:
+      profile: ${profile:docker}

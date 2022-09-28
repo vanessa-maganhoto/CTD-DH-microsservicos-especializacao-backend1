@@ -1,5 +1,6 @@
 package com.dh.catalogo.catalogo.dto;
 
+import com.dh.catalogo.catalogo.entity.Movie;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,4 +16,12 @@ public class MovieDTO {
     private String name;
     private String genre;
     private String urlStream;
+
+    public Movie toEntity() {
+        return new Movie(id, name, genre, urlStream);
+    }
+
+    public MovieDTO(Movie movie) {
+        this(movie.getId(), movie.getName(), movie.getGenre(), movie.getUrlStream());
+    }
 }

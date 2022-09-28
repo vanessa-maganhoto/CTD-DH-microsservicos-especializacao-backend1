@@ -1,0 +1,43 @@
+#server:
+#  port: 8084
+#  servlet:
+#    context-path: /catalogo/
+
+spring:
+  config:
+    import: configserver:http://localhost:8888/
+  application:
+    name: catalogo-service
+  cloud:
+    config:
+      profile: ${profile:dev}
+
+#  zipkin:
+#    base-url: http://localhost:9411/
+#  rabbitmq:
+#    username: guest
+#    password: guest
+#    host: localhost
+#    port: 5672
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3302/catalogo
+#    username: usuarioAplicacao
+#    password: 123456789Tu
+#  jpa:
+#    hibernate.ddl-auto: update
+#    generate-ddl: true
+#    show-sql: true
+
+#queue:
+#  movie:
+#    name: MovieQueue
+#  serie:
+#    name: SerieQueue
+#
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/

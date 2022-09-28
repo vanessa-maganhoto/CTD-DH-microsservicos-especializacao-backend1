@@ -15,4 +15,8 @@ public class RabbitMQSenderConfig {
     public Queue queue() {
         return new Queue(this.serieQueue, false);
     }
+
+    public String getSerieQueue() {
+        return serieQueue;
+    }
 }

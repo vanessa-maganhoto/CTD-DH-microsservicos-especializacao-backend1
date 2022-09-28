@@ -1,20 +1,3 @@
 spring:
-  config:
-    import: optional:configserver:http://config:8888/
-  application:
-    name: catalogo-service
-  cloud:
-    config:
-      profile: ${profile:dev}
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/catalogo
-#    url: jdbc:mysql://host.docker.internal:3306/catalogo
-    username: root
-#    username: usuarioAplicacao
-    password: root
-#    password: 123456789Tu
-  jpa:
-    hibernate.ddl-auto: update
-    generate-ddl: true
-    show-sql: true
+  profiles:
+    default: dev

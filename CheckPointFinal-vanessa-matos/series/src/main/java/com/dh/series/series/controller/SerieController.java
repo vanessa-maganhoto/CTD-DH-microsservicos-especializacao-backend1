@@ -17,7 +17,7 @@ public class SerieController {
     private SerieService serieService;
 
     @GetMapping(value = "/{genre}")
-    public ResponseEntity<List<SerieDTO>> findByGenre (String genre){
+    public ResponseEntity<List<SerieDTO>> findByGenre (@PathVariable("genre") String genre){
         List<SerieDTO> list = serieService.findAll(genre);
         return ResponseEntity.ok().body(list);
     }

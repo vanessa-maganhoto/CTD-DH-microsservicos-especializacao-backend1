@@ -1,0 +1,22 @@
+server:
+  port: ${PORT:8888}
+
+spring:
+  application:
+    name: config-server
+  zipkin:
+    base-url: http://localhost:9411/
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/vanessa-maganhoto/configCloud
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

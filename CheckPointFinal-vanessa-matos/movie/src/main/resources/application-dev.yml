@@ -1,0 +1,38 @@
+#server:
+#  port: 8086
+#  servlet:
+#    context-path: /movie/
+spring:
+  config:
+    import: configserver:http://localhost:8888/
+  application:
+    name: movie-service
+  cloud:
+    config:
+      profile: ${profile:dev}
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://localhost:3301/movie
+#    username: usuarioAplicacao
+#    password: 123456789Tu
+#  jpa:
+#    hibernate.ddl-auto: update
+#    generate-ddl: true
+#    show-sql: true
+
+#  zipkin:
+#    base-url: http://localhost:9411/
+#  rabbitmq:
+#    username: guest
+#    password: guest
+#    host: localhost
+#    port: 5672
+#queue:
+#  movie:
+#    name: MovieQueue
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/

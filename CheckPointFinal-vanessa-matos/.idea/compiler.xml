@@ -10,9 +10,9 @@
         <module name="catalogo" />
         <module name="movie" />
         <module name="config" />
-        <module name="eureka" />
         <module name="gateway" />
         <module name="series" />
+        <module name="eureka" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

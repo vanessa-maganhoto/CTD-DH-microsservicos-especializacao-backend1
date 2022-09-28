@@ -11,8 +11,8 @@ import java.util.List;
 @FeignClient(name="SERIE-SERVICE")
 public interface SerieFeign {
 
-    @GetMapping("/catalogo/{genre}")
-    ResponseEntity<List<SerieDTO>> findByGenre (@PathVariable String genre);
+    @GetMapping("/serie/{genre}")
+    ResponseEntity<List<SerieDTO>> findByGenre(@PathVariable("genre") String genre);
 }
 //    Atualizar o catálogo utilizando Feign de maneira que adicione a este serviço a
 //        busca da serie por género (serie-service) e criar a resposta do endpoint

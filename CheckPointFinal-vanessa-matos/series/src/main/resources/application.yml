@@ -1,21 +1,3 @@
-server:
-  port: 8087
-  servlet:
-    context-path: /serie/
 spring:
-  config:
-    import: optional:configserver:http://config:8888/
-  application:
-    name: serie-service
-  cloud:
-    config:
-      profile: ${profile:dev}
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://host.docker.internal:3306/serie
-    username: usuarioAplicacao
-    password: 123456789Tu
-    jpa:
-      hibernate.ddl-auto: update
-      generate-ddl: true
-      show-sql: true
+  profiles:
+    default: dev
